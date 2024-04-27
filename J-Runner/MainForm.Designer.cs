@@ -923,7 +923,7 @@ namespace JRunner
             // 
             this.generateCpuKeyToolStripMenuItem.Name = "generateCpuKeyToolStripMenuItem";
             this.generateCpuKeyToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.generateCpuKeyToolStripMenuItem.Text = "Generate CPU Key";
+            this.generateCpuKeyToolStripMenuItem.Text = "Generate CPU Key…";
             this.generateCpuKeyToolStripMenuItem.ToolTipText = "Generates a valid CPU Key in the CPU Key box";
             this.generateCpuKeyToolStripMenuItem.Click += new System.EventHandler(this.generateCpuKeyToolStripMenuItem_Click);
             // 

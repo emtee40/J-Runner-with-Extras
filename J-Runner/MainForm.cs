@@ -1423,7 +1423,7 @@ namespace JRunner
                 }
             }
         }
-        void writexell()
+        void writeXellNandx()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
@@ -1444,7 +1444,7 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine("File Length = {0}", len);
 
                 NandX.Errors result = NandX.Errors.None;
-                result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50);
+                result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50, false, true);
 
                 if (result == NandX.Errors.None)
                 {
@@ -2728,6 +2728,11 @@ namespace JRunner
 
         #region UI
 
+        public void updateCpuKeyText(string key)
+        {
+            txtCPUKey.Text = key;
+        }
+
         public void updateProgress(int progress)
         {
             progressBar.BeginInvoke((Action)(() => progressBar.Value = progress));
@@ -3197,10 +3202,27 @@ namespace JRunner
             }
         }
 
+        CPUKeyGenGUI CKGG;
         private void generateCpuKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) txtCPUKey.Text = variables.superDevKey;
-            else txtCPUKey.Text = CpuKeyGen.GenerateKey();
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                txtCPUKey.Text = variables.superDevKey;
+            }
+            else
+            {
+                if (Application.OpenForms.OfType<CPUKeyGenGUI>().Any())
+                {
+                    CKGG.WindowState = FormWindowState.Normal;
+                    CKGG.Activate();
+                }
+                else
+                {
+                    CKGG = new CPUKeyGenGUI();
+                    CKGG.Show();
+                    CKGG.Location = new Point(Location.X + (Width - CKGG.Width) / 2, Location.Y + 155);
+                }
+            }
         }
 
         private void checkSecdataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3612,7 +3634,7 @@ namespace JRunner
                 }
                 else if (Path.GetExtension(variables.filename1) == ".bin")
                 {
-                    ThreadStart starter = delegate { writexell(); };
+                    ThreadStart starter = delegate { writeXellNandx(); };
                     new Thread(starter).Start();
                 }
                 else getconsoletype(3);
