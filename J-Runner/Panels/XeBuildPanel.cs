@@ -1410,6 +1410,7 @@ namespace JRunner.Panels
                 case Classes.xebuild.XebuildError.nobootloaders:
                     Console.WriteLine("The specified console bootloader list ({0}) is missing from the ini ({1})", variables.ctype.Ini + "bl", ini);
                     Console.WriteLine("You can either add it manually or ask for it get added if its possible");
+                    xe.xeExit += xe_xeExit;
                     return;
                 case Classes.xebuild.XebuildError.wrongcpukey:
                     MessageBox.Show("Wrong CPU Key");
@@ -1441,21 +1442,25 @@ namespace JRunner.Panels
 
         public void xe_xeExit(object sender, EventArgs e)
         {
-            xeExitActual();
+            xeExitActual(variables.xefinished);
         }
 
-        public void xeExitActual()
+        public void xeExitActual(bool success = true)
         {
+            if (variables.debugMode) Console.WriteLine("XeBuild Success: " + success.ToString());
             variables.changeldv = 0;
             MainForm.mainForm.updateProgress(100);
 
-            try
+            if (success)
             {
-                File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
-                chkXeSettings.Checked = false;
-                File.Move(Path.Combine(variables.xefolder, variables.updflash + ".log"), Path.Combine(variables.xefolder, variables.updflash.Substring(0, variables.updflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
+                try
+                {
+                    File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
+                    chkXeSettings.Checked = false;
+                    File.Move(Path.Combine(variables.xefolder, variables.updflash + ".log"), Path.Combine(variables.xefolder, variables.updflash.Substring(0, variables.updflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
+                }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             }
-            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
             try
             {
@@ -1463,7 +1468,7 @@ namespace JRunner.Panels
             }
             catch { }
 
-            if (variables.xefinished)
+            if (variables.xefinished && success)
             {
                 Console.WriteLine("Saved to {0}", variables.xefolder);
                 Console.WriteLine("Image is Ready");

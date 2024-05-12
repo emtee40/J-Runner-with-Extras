@@ -3220,7 +3220,7 @@ namespace JRunner
                 {
                     CKGG = new CPUKeyGenGUI();
                     CKGG.Show();
-                    CKGG.Location = new Point(Location.X + (Width - CKGG.Width) / 2, Location.Y + 155);
+                    CKGG.Location = new Point(Location.X + (Width - CKGG.Width) / 2, Location.Y + 158);
                 }
             }
         }
