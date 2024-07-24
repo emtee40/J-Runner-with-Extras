@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 
 namespace JRunner.Nand
@@ -107,7 +108,7 @@ namespace JRunner.Nand
                             {
                                 foundAPatch = true;
                                 foundPatches.Add(patch);
-
+                                
                                 if (patch.consoleMsg != "")
                                 {
                                     if (patch.name != "XLHDD" && patch.name != "XLUSB")

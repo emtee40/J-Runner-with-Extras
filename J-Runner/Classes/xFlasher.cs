@@ -602,7 +602,7 @@ namespace JRunner
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            double len = new FileInfo(variables.filename1).Length;
+            long len = new FileInfo(variables.filename1).Length;
             if (len == 50331648)
             {
                 MessageBox.Show("Unable to write eMMC type image in SPI mode\n\nPlease switch to eMMC mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);

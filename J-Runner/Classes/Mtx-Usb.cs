@@ -47,7 +47,7 @@ namespace JRunner
                 return;
             }
 
-            double len = new FileInfo(variables.filename1).Length;
+            long len = new FileInfo(variables.filename1).Length;
             if (len == 50331648)
             {
                 MessageBox.Show("Unable to write eMMC type image with an SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -1929,7 +1929,7 @@ namespace JRunner
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 if (listInfo.Contains(xsvfChoice)) xsvfChoice_CloseClick();
                 updateProgress(progressBar.Maximum / 2);
-                nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
+                nand = new PrivateN(variables.filename1, variables.cpukey);
                 if (!nand.ok)
                 {
                     updateProgress(progressBar.Maximum);
