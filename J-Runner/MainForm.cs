@@ -1423,7 +1423,7 @@ namespace JRunner
                 }
             }
         }
-        void writeXellNandx()
+        void writeXellNandX()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
@@ -1444,7 +1444,7 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine("File Length = {0}", len);
 
                 NandX.Errors result = NandX.Errors.None;
-                result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50, false, true);
+                result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50, false, false);
 
                 if (result == NandX.Errors.None)
                 {
@@ -3614,7 +3614,8 @@ namespace JRunner
 
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.Write(1, 0, 0, true);
+                if (Path.GetExtension(variables.filename1) == ".ecc") picoflasher.Write(1, 0, 0, true);
+                else picoflasher.Write(0, 0, 0, true);
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {
@@ -3634,7 +3635,7 @@ namespace JRunner
                 }
                 else if (Path.GetExtension(variables.filename1) == ".bin")
                 {
-                    ThreadStart starter = delegate { writeXellNandx(); };
+                    ThreadStart starter = delegate { writeXellNandX(); };
                     new Thread(starter).Start();
                 }
                 else getconsoletype(3);

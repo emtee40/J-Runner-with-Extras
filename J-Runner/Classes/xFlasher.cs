@@ -594,7 +594,8 @@ namespace JRunner
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            writeNand(16, variables.filename1, 1);
+            if (Path.GetExtension(variables.filename1) == ".ecc") writeNand(16, variables.filename1, 1);
+            else writeNand(16, variables.filename1, 2);
         }
 
         public void writeNandAuto()
