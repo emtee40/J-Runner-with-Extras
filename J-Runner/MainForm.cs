@@ -2066,7 +2066,7 @@ namespace JRunner
                         patchesByte = Nand.Nand.unecc(patchesByte);
                     }
                     
-                    byte[] patches = new byte[0x2000];
+                    byte[] patches = new byte[0x4000];
                     
                     if (nand.bigblock)
                     {
@@ -2089,7 +2089,7 @@ namespace JRunner
                 
                     if (!patchResult)
                     {
-                        patches = new byte[0x2000];
+                        patches = new byte[0x4000];
                 
                         for (int i = 0; i < patches.Length; i++)
                         {
