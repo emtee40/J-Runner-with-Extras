@@ -54,9 +54,8 @@ namespace JRunner
             ///
             /// Paths
             ///
-            string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string xellfile = Path.Combine(pathforit, @"xeBuild\data\xell-gggggg.bin");
-            string cdfile = Path.Combine(pathforit, @"common\cdxell\CD");
+            string xellfile = Path.Combine(variables.rootfolder, @"xeBuild\data\xell-gggggg.bin");
+            string cdfile = Path.Combine(variables.rootfolder, @"common\cdxell\CD");
 
             long size = 0;
             // cd file
@@ -130,10 +129,9 @@ namespace JRunner
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             if (variables.debugMode) Console.WriteLine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
-            string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string cdrgh2file = Path.Combine(pathforit, @"common/cdxell/CDRGH2");
-            string cdfile = Path.Combine(pathforit, @"common/cdxell/CD");
-            string cdjasperfile = Path.Combine(pathforit, @"common/cdxell/CDjasper");
+            string cdrgh2file = Path.Combine(variables.rootfolder, @"common/cdxell/CDRGH2");
+            string cdfile = Path.Combine(variables.rootfolder, @"common/cdxell/CD");
+            string cdjasperfile = Path.Combine(variables.rootfolder, @"common/cdxell/CDjasper");
 
             /// nand image
             {
@@ -218,28 +216,28 @@ namespace JRunner
 
                 if (falcon_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
                 {
-                    cbapath = Path.Combine(pathforit, "common\\CB\\CB_A.5772.bin");
-                    cbbpath = Path.Combine(pathforit, "common\\CB\\CB_B.5772.bin");
+                    cbapath = Path.Combine(variables.rootfolder, "common\\CB\\CB_A.5772.bin");
+                    cbbpath = Path.Combine(variables.rootfolder, "common\\CB\\CB_B.5772.bin");
                 }
                 else if (jasper_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
                 {
-                    cbapath = Path.Combine(pathforit, "common\\CB\\CB_A.6752.bin");
-                    cbbpath = Path.Combine(pathforit, "common\\CB\\CB_B.6752.bin");
+                    cbapath = Path.Combine(variables.rootfolder, "common\\CB\\CB_A.6752.bin");
+                    cbbpath = Path.Combine(variables.rootfolder, "common\\CB\\CB_B.6752.bin");
                 }
                 else if (trinity_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
                 {
-                    cbapath = Path.Combine(pathforit, "common\\CB\\CB_A.9188.bin");
-                    cbbpath = Path.Combine(pathforit, "common\\CB\\CB_B.9188.bin");
+                    cbapath = Path.Combine(variables.rootfolder, "common\\CB\\CB_A.9188.bin");
+                    cbbpath = Path.Combine(variables.rootfolder, "common\\CB\\CB_B.9188.bin");
                 }
                 else if (zephyr_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
                 {
-                    cbapath = Path.Combine(pathforit, "common\\CB\\CB_A.4577.bin");
-                    cbbpath = Path.Combine(pathforit, "common\\CB\\CB_B.4577.bin");
+                    cbapath = Path.Combine(variables.rootfolder, "common\\CB\\CB_A.4577.bin");
+                    cbbpath = Path.Combine(variables.rootfolder, "common\\CB\\CB_B.4577.bin");
                 }
                 else if (corona_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
                 {
-                    cbapath = Path.Combine(pathforit, "common\\CB\\CB_A.13121.bin");
-                    cbbpath = Path.Combine(pathforit, "common\\CB\\CB_B.13121.bin");
+                    cbapath = Path.Combine(variables.rootfolder, "common\\CB\\CB_A.13121.bin");
+                    cbbpath = Path.Combine(variables.rootfolder, "common\\CB\\CB_B.13121.bin");
                 }
 
                 c = "RGH2 2stage CB img";

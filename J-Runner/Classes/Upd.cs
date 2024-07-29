@@ -204,8 +204,8 @@ namespace JRunner
 
                     try
                     {
-                        if (Directory.Exists("common")) Directory.Delete("common", true);
-                        if (Directory.Exists("xeBuild")) Directory.Delete("xeBuild", true);
+                        if (Directory.Exists(Path.Combine(variables.rootfolder, "common"))) Directory.Delete(Path.Combine(variables.rootfolder, "common"), true);
+                        if (Directory.Exists(Path.Combine(variables.rootfolder, "xeBuild"))) Directory.Delete(Path.Combine(variables.rootfolder, "xeBuild"), true);
                     }
                     catch
                     {

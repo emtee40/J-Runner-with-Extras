@@ -212,59 +212,59 @@ namespace JRunner
                         return;
                     }
 
-                    if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                    if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
 
                     MainForm.mainForm.xFlasherBusy(-2);
                     Console.WriteLine("xFlasher: Checking CB...");
                     inUse = true;
 
-                    int result = spi(1, 16, @"common\xflasher\nand.bin", 0, 4); // Read Conf
+                    int result = spi(1, 16, Path.Combine(variables.rootfolder, @"common\xflasher\nand.bin"), 0, 4); // Read Conf
 
                     inUse = false;
                     MainForm.mainForm.xFlasherBusy(-1);
 
                     if (result == 0)
                     {
-                        if (File.Exists("common/xflasher/nand.bin"))
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin")))
                         {
-                            variables.conf = File.ReadAllBytes("common/xflasher/nand.bin");
+                            variables.conf = File.ReadAllBytes(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                             MainForm.mainForm.getcb_v(flashconf);
-                            File.Delete("common/xflasher/nand.bin");
+                            File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         }
 
                         Console.WriteLine("");
                     }
                     else if (result == -2)
                     {
-                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         Console.WriteLine("xFlasher: Device Not Initialized");
                         Console.WriteLine("");
                         return;
                     }
                     else if (result == -3)
                     {
-                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         Console.WriteLine("xFlasher: Console Not Found");
                         Console.WriteLine("");
                         return;
                     }
                     else if (result == -4)
                     {
-                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         Console.WriteLine("xFlasher: Unknown Nand");
                         Console.WriteLine("");
                         return;
                     }
                     else if (result == -11)
                     {
-                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         Console.WriteLine("xFlasher: Couldn't Open File");
                         Console.WriteLine("");
                         return;
                     }
                     else
                     {
-                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
                         Console.WriteLine("xFlasher: Unknown Error");
                         Console.WriteLine("");
                         return;
@@ -274,7 +274,7 @@ namespace JRunner
                 {
                     inUse = false;
                     MainForm.mainForm.xFlasherBusy(-1);
-                    if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                    if (File.Exists(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"))) File.Delete(Path.Combine(variables.rootfolder, "common/xflasher/nand.bin"));
 
                     Console.WriteLine(ex.Message);
                     if (variables.debugMode) Console.WriteLine(ex.ToString());

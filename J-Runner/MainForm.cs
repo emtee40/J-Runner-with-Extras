@@ -220,11 +220,11 @@ namespace JRunner
             try
             {
                 // Delete deprecated files
-                if (Directory.Exists(@"common\ECC")) Directory.Delete(@"common\ECC", true);
-                if (Directory.Exists(@"common\xell")) Directory.Delete(@"common\xell", true);
-                if (File.Exists(@"common\xflasher\FTDI2SPI.dll")) File.Delete(@"common\xflasher\FTDI2SPI.dll");
-                if (File.Exists(@"xeBuild\xell-2f.bin")) File.Delete(@"xeBuild\xell-2f.bin");
-                if (File.Exists(@"xeBuild\xell-gggggg.bin")) File.Delete(@"xeBuild\xell-gggggg.bin");
+                if (Directory.Exists(Path.Combine(variables.rootfolder, @"common\ECC"))) Directory.Delete(Path.Combine(variables.rootfolder, @"common\ECC"), true);
+                if (Directory.Exists(Path.Combine(variables.rootfolder, @"common\xell"))) Directory.Delete(Path.Combine(variables.rootfolder, @"common\xell"), true);
+                if (File.Exists(Path.Combine(variables.rootfolder, @"common\xflasher\FTDI2SPI.dll"))) File.Delete(Path.Combine(variables.rootfolder, @"common\xflasher\FTDI2SPI.dll"));
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\xell-2f.bin"))) File.Delete(Path.Combine(variables.rootfolder, @"xeBuild\xell-2f.bin"));
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\xell-gggggg.bin"))) File.Delete(Path.Combine(variables.rootfolder, @"xeBuild\xell-gggggg.bin"));
 
                 foreach (string file in xeBuildDataList) // Cleanup temporary files placed in xeBuild\data
                 {
@@ -3231,7 +3231,7 @@ namespace JRunner
             {
                 try
                 {
-                    ProcessStartInfo xflasherdrivers = new ProcessStartInfo("common\\drivers\\xFlasher-Drivers.exe");
+                    ProcessStartInfo xflasherdrivers = new ProcessStartInfo(Path.Combine(variables.rootfolder, "common\\drivers\\xFlasher-Drivers.exe"));
                     xflasherdrivers.WorkingDirectory = Environment.CurrentDirectory;
                     xflasherdrivers.UseShellExecute = true;
                     if (!variables.isWinXP) xflasherdrivers.Verb = "runas";

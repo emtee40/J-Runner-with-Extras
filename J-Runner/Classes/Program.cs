@@ -93,7 +93,7 @@ namespace JRunner
 
                 if (!Upd.runFullUpdate)
                 {
-                    if (!Directory.Exists("common") || !Directory.Exists("xeBuild"))
+                    if (!Directory.Exists(Path.Combine(variables.rootfolder, "common")) || !Directory.Exists(Path.Combine(variables.rootfolder, "xeBuild")))
                     {
                         if (MessageBox.Show("Critical support files required for correct operation are missing\n\nDo you want to download the required support files?\n\nAll files inside common and xeBuild will be deleted and replaced with clean versions!", "Missing Files", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
@@ -117,7 +117,7 @@ namespace JRunner
                         {
                             try
                             {
-                                ProcessStartInfo vcredistx86 = new ProcessStartInfo("common\\xflasher\\vcredist_x86.exe");
+                                ProcessStartInfo vcredistx86 = new ProcessStartInfo(Path.Combine(variables.rootfolder, "common\\xflasher\\vcredist_x86.exe"));
                                 vcredistx86.WorkingDirectory = Environment.CurrentDirectory;
                                 vcredistx86.UseShellExecute = true;
                                 if (!variables.isWinXP) vcredistx86.Verb = "runas";
